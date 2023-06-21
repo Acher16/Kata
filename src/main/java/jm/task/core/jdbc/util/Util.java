@@ -1,5 +1,8 @@
 package jm.task.core.jdbc.util;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -10,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class Util {
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
         Properties properties = new Properties();
 
         try (InputStream is = Files.newInputStream(Paths.get("src/main/resources/database.properties"))) {
@@ -19,10 +22,18 @@ public class Util {
             throw new RuntimeException(e);
         }
 
-        return DriverManager.getConnection(
-                properties.getProperty("url"),
-                properties.getProperty("username"),
-                properties.getProperty("password")
-        );
+        Connection connection;
+
+        try {
+            connection = DriverManager.getConnection(
+                    properties.getProperty("url"),
+                    properties.getProperty("username"),
+                    properties.getProperty("password")
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return connection;
     }
 }
