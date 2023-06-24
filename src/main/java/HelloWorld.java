@@ -1,5 +1,4 @@
 public class HelloWorld {
- 
     private String message;
  
     public String getMessage() {
