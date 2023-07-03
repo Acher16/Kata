@@ -5,7 +5,7 @@ import web.model.Car;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarService {
+public class CarService implements Service {
     private static List<Car> cars;
 
     static {
@@ -15,7 +15,14 @@ public class CarService {
         }
     }
 
-    public static List<Car> getCars() {
+    @Override
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    @Override
+    public List<Car> getCars(int count) {
+        if (count < cars.size()) return cars.subList(0, count);
         return cars;
     }
 }
