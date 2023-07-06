@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" th:href="@{/css/form.css}">
+</head>
+<body>
+  <div class="block">
+    <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+      <div class="block_input">
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name">
+      </div>
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+      <div class="block_input">
+        <label for="last_name">Last Name</label>
+        <input type="text" th:field="*{lastName}" id="last_name">
+      </div>
+      <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+      <div class="block_input">
+        <label for="age">Age</label>
+        <input type="text" th:field="*{age}" id="age">
+      </div>
+      <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+      <div class="block_button">
+        <input type="submit" value="update user" class="button">
+      </div>
+    </form>
+  </div>
+<!--<div>-->
+<!--  <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">-->
+<!--    <label for="name">Name</label>-->
+<!--    <input type="text" th:field="*{name}" id="name">-->
+<!--    <label for="last_name">Last Name</label>-->
+<!--    <input type="text" th:field="*{lastName}" id="last_name">-->
+<!--    <label for="age">Age</label>-->
+<!--    <input type="text" th:field="*{age}" id="age">-->
+<!--    <input type="submit" value="update">-->
+<!--  </form>-->
+<!--</div>-->
+</body>
+</html>

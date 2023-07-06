@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus, active {outline: none;}
+a:focus, a:active {outline: none;}
+
+nav, footer, header, aside {display: block;}
+
+html,body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,button,textarea {font-family: inherit;}
+
+input::-ms-clear {display: none;}
+button {cursor: pointer;}
+button::-moz-focus-inner {padding: 0; border: 0;}
+a, a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+ul li {list-style: none;}
+img {vertical-align: top;}
+
+/*---------------------------------------------------*/
+
+body {
+    font-family: system-ui;
+    font-size: 20px;
+}
+
+.block {
+    margin: 10% 10% 10% 10%;
+}
+
+.table {
+    border: 2px solid black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col, .col_head {
+    border: 2px solid black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 2;
+}
+
+.col_head {
+    padding: 30px;
+    font-weight: bold;
+}
+
+.block_button {
+    margin: 20px;
+}
+
+.button {
+    border: 4px solid black;
+    background: white;
+    font-size: 20px;
+    padding: 1px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: black;
+    color: white;
+}
+
+#actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
