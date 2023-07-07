@@ -20,26 +20,26 @@ public class UserController {
     }
 
     @GetMapping()
-    public String printWelcome(Model model) {
+    public String getAllUsers(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "/users";
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String getFormCreateUser(@ModelAttribute("user") User user) {
         return "/new";
     }
 
     @PostMapping()
     public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "/new";
-        userService.save(user);
+        userService.saveUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/{id}/edit")
-    public String editUser(Model model, @PathVariable("id") int id) {
+    public String getFormEditUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUserFromId(id));
         return "/edit";
     }
