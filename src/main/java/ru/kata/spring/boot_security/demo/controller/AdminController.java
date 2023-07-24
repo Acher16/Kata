@@ -21,9 +21,8 @@ public class AdminController {
 
     @GetMapping
     public String getPageUsersAll(Model model) {
-        List<User> users = userService.getAllUsers()
-                .stream().filter(user -> !"admin".equals(user.getName())).collect(Collectors.toList());
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("roles", roleRepository.findAll());
         return "users";
     }
 

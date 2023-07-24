@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,9 +9,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@NamedEntityGraph(name = "userRoles", attributeNodes = @NamedAttributeNode("roles"))
 @Entity
 @Table(name = "users")
-@Getter @Setter
+@Getter @Setter @EqualsAndHashCode
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +20,21 @@ public class User implements UserDetails {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "age")
+    private int age;
     @Column(name = "password")
     private String password;
     @Column(name = "mail", unique = true)
     private String mail;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
