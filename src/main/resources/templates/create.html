@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col p-0">
+            <nav class="navbar navbar-dark bg-dark text-white">
+                <div class="d-flex justify-content-between w-100">
+                    <div class="col text-left">
+                        <span sec:authentication="name"></span>
+                        <span> with roles: <span sec:authentication="principal.authorities"></span></span>
+                    </div>
+                    <div class="col text-right">
+                        <a href="/logout">logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2 py-3 px-0">
+            <nav class="nav nav-pills flex-column">
+                <a class="nav-link active pl-4" aria-current="page" href="/admin">Admin</a>
+                <a class="nav-link pl-4" href="/user">User</a>
+            </nav>
+        </div>
+        <div class="col-10 bg-light px-5 py-3" style="height: 100vh;">
+            <div class="row-fluid">
+                <h1>Admin panel</h1>
+            </div>
+            <div class="row-fluid">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Users table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/new">New user</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="border">
+                <div class="row-fluid px-3 py-2 border-bottom">
+                    <h5>Add new user</h5>
+                </div>
+                <div class="row-fluid bg-white">
+                    <div class="d-flex justify-content-center p-4">
+                        <form class="w-25 font-weight-bold text-center" th:method="POST" th:action="@{/admin}" th:object="${user}">
+                            <div class="form-group">
+                                <label for="firstName">First name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="first name" th:field="*{name}">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="last name" th:field="*{lastName}">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="text" class="form-control" id="age" placeholder="age" th:field="*{age}">
+                            </div>
+                            <div class="form-group">
+                                <label for="mail">Email</label>
+                                <input type="email" class="form-control" id="mail" placeholder="name@example.com" th:field="*{mail}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="password" th:field="*{password}">
+                            </div>
+                            <div class="form-group">
+                                <label for="roles">Role</label>
+                                <select multiple class="form-control" style="height: 50px;" id="roles" th:field="*{roles}">
+                                    <option th:each="role : ${roles}" th:text="${role.getName()}" th:value="${role.getId()}"></option>
+                                </select>
+                            </div>
+                            <input class="btn btn-success" type="submit" value="Add new user">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
