@@ -13,17 +13,19 @@
 </head>
 <body>
 
-<div class="container-fluid p-3">
+<div class="container-fluid">
     <div class="row">
         <div class="col p-0">
             <nav class="navbar navbar-dark bg-dark text-white">
-                <div class="d-flex justify-content-between w-100">
-                    <div class="col text-left">
-                        <span sec:authentication="name"></span>
+                <div class="d-flex justify-content-between w-100 align-items-center">
+                    <div class="col text-left h5">
+                        <span sec:authentication="name" class="font-weight-bold"></span>
                         <span> with roles: <span sec:authentication="principal.authorities"></span></span>
                     </div>
                     <div class="col text-right">
-                        <a href="/logout">logout</a>
+                        <form th:action="@{/logout}" method="POST">
+                            <input class="btn btn-link text-light" type="submit" value="logout">
+                        </form>
                     </div>
                 </div>
             </nav>
@@ -32,6 +34,7 @@
     <div class="row">
         <div class="col-2 py-3 px-0">
             <nav class="nav nav-pills flex-column">
+                <a class="nav-link pl-4" aria-current="page" href="/admin" sec:authorize="hasRole('ROLE_ADMIN')">Admin</a>
                 <a class="nav-link active pl-4" aria-current="page" href="/user">User</a>
             </nav>
         </div>

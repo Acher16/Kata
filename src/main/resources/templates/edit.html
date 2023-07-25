@@ -1,18 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form th:method="POST" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
-    Name: <input type="text" th:field="*{name}"><br>
-    Email: <input type="text" th:field="*{mail}"><br>
-    Password: <input type="text" th:field="*{password}"><br>
-    <select th:field="*{roles}">
-        <option th:each="role : ${roles}" th:text="${role.getName()}" th:value="${role.getId()}"></option>
-    </select>
-    <input type="submit" value="edit">
-</form>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form th:method="POST" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">-->
+<!--    Name: <input type="text" th:field="*{name}"><br>-->
+<!--    Email: <input type="text" th:field="*{mail}"><br>-->
+<!--    Password: <input type="text" th:field="*{password}"><br>-->
+<!--    <select th:field="*{roles}">-->
+<!--        <option th:each="role : ${roles}" th:text="${role.getName()}" th:value="${role.getId()}"></option>-->
+<!--    </select>-->
+<!--    <input type="submit" value="edit">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
